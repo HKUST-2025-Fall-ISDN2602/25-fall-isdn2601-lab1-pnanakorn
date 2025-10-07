@@ -4,7 +4,7 @@
 #define Vout  27 //*** Define the GPIO pin 27 as Vout ***
 #define Cal 14 //*** Define the GPIO pin 14 as the node for current calcultion ***
 
-float R =  0.002; //*** Resistance in Mohms ***
+float R =  0.022; //*** Resistance in ohms ***
 
 float x;
 float y;
@@ -29,7 +29,7 @@ void setup() {
     int c_value = analogRead(Cal); // read the voltage level at pin D14 0-3.3 V and convert it to 12 bit binary number 
     c1 = float(Vout_value*3.3)/4095 ; // convert 12 bit binary number of Voltage level at Vout back to 0-3.3 V 
     c2 = float(c_value*3.3)/4095 ; // convert 12 bit binary number of Voltage level at D14 back to 0-3.3 V 
-    x =  (c1 * 1000.0); // calculate the voltage at Vout in mV
+    x =  (c1*1000.0); // calculate the voltage at Vout in mV
     y = (c2-c1)/R ; // calculate current in uA for Task 2 3 4 
     Serial.print(x); // print the voltage at Vout in mV
     Serial.print(","); 
